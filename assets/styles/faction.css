@@ -54,20 +54,20 @@ header .container a:hover {
   border: #FFD28D 1px solid;
 }
 
-#main-img {
-  width: 359px;
-  height: 359px;
-  padding: 2px;
-  border-radius: 100%;
-  background-image: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
-}
-
 .faction h1 {
   margin: 11px 0 66px 0;
 }
 
 .faction .faction-switch .reverse {
   transform: rotateY(180deg);
+}
+
+#main-img {
+  width: 359px;
+  height: 359px;
+  padding: 2px;
+  border-radius: 100%;
+  background-image: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
 }
 
 .heroes-list {
@@ -101,6 +101,14 @@ header .container a:hover {
 
 .heroes-list ul a p {
   margin-top: 5px;
+}
+
+#hero-card-img {
+  width: 188px;
+  height: 188px;
+  padding: 2px;
+  border-radius: 100%;
+  background-image: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
 }
 
 .hero-avatar {

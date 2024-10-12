@@ -1,35 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&display=swap");
+
 /* Reset styles */
 html,
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 ul,
 li {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 /* Other styles */
 :root {
-    --color-black: #0c0c0c;
-    --color-gold: #dbae64;
-    --font-family: "Crimson Text", sans-serif;
+  --color-black: #0c0c0c;
+  --color-gold: #dbae64;
+  --font-family: "Crimson Text", sans-serif;
 }
 
 html {
-    font-family: var(--font-family);
-    background-image: url('/assets/images/background.png');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: cover;
+  font-family: var(--font-family);
+  background-image: url("/assets/images/background.png");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
 }
 
 h1,
@@ -39,73 +41,73 @@ p,
 button,
 span,
 a {
-    background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
-    font-weight: 400;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  background: linear-gradient(180deg, #ffd28d 47.92%, #352000 100%);
+  font-weight: 400;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 span {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 @media (min-width: 321px) {
-    h1 {
-        font-size: 61px;
-    }
+  h1 {
+    font-size: 61px;
+  }
 
-    h2 {
-        font-size: 41px;
-    }
+  h2 {
+    font-size: 41px;
+  }
 
-    h3 {
-        font-size: 32px;
-    }
+  h3 {
+    font-size: 32px;
+  }
 
-    span {
-        font-size: 29px;
-    }
+  span {
+    font-size: 29px;
+  }
 
-    button {
-        font-size: 26px;
-    }
+  button {
+    font-size: 26px;
+  }
 
-    a {
-        font-size: 26px;
-    }
+  a {
+    font-size: 26px;
+  }
 
-    p {
-        font-size: 17px;
-    }
+  p {
+    font-size: 17px;
+  }
 }
 
 @media (max-width: 320px) {
-    h1 {
-        font-size: 41px;
-    }
+  h1 {
+    font-size: 41px;
+  }
 
-    h2 {
-        font-size: 19px;
-    }
-    
-    h3 {
-        font-size: 19px;
-    }
+  h2 {
+    font-size: 19px;
+  }
 
-    span {
-        font-size: 14px;
-    }
+  h3 {
+    font-size: 19px;
+  }
 
-    button {
-        font-size: 12px;
-    }
+  span {
+    font-size: 14px;
+  }
 
-    a {
-        font-size: 12px;
-    }
-    
-    p {
-        font-size: 12px;
-    }
+  button {
+    font-size: 12px;
+  }
+
+  a {
+    font-size: 12px;
+  }
+
+  p {
+    font-size: 12px;
+  }
 }
