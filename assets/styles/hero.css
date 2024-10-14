@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
   margin: 65px;
 }
 
@@ -67,4 +68,160 @@
   width: 100%;
   left: 0px;
   bottom: 20px;
+}
+
+@media (max-width: 1440px) {
+  header .container {
+    padding: 65px 119px 0 130px;
+  }
+
+  header img {
+    width: 88px;
+    height: 79px;
+  }
+
+  .heroes-list ul {
+    gap: 20px;
+  }
+
+  .heroes-list ul li {
+    width: 280px;
+    height: 352px;
+  }
+}
+
+@media (max-width: 1024px) {
+  header .container {
+    padding: 67px 66px 0 66px;
+  }
+
+  .heroes-list ul {
+    gap: 24px;
+  }
+
+  .heroes-list ul li {
+    width: 208px;
+    height: 352px;
+  }
+}
+
+@media (max-width: 768px) {
+  header .container {
+    padding: 67px 46px 0 46px;
+  }
+
+  .heroes-list ul {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  header .container {
+    padding: 40px 46px 0 46px;
+  }
+
+  header img {
+    width: 66px;
+    height: 60px;
+  }
+
+  #main-img {
+    width: 168px;
+    height: 168px;
+  }
+
+  #right-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  #left-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  #hero-card-img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .badge-main {
+    left: 0;
+    bottom: 0;
+  }
+  
+  .badge-main span {
+    width: 100%;
+    left: 0;
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  header .container {
+    padding: 29px 29px 0 29px;
+  }
+
+  header img {
+    width: 40px;
+    height: 36px;
+  }
+
+  #main-img {
+    width: 168px;
+    height: 168px;
+  }
+
+  .hero .hero-switch a img {
+    padding: 6px 8px;
+  }
+
+  .hero .hero-switch {
+    gap: 11px;
+  }
+
+  .hero h1 {
+    margin: 24px 0 15px 0;
+  }
+
+  #gold-line-icon {
+    width: 12px;
+    height: 57px;
+  }
+
+  #hero-card-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .hero-avatar .badge img {
+    width: 30px;
+    height: 32px;
+  }
+
+  .heroes-list ul li {
+    width: 120px;
+    height: 224px;
+  }
+
+  .heroes-list ul a h3 {
+    margin-top: 5px;
+  }
+
+  .badge-main {
+    left: -2;
+    bottom: 14px;
+  }
+
+  .badge-main img {
+    width: 30px;
+    height: 33px;
+  }
+  
+  .badge-main span {
+    font-size: 14px;
+    width: 100%;
+    left: 0;
+    bottom: 12px;
+  }
 }

@@ -8,7 +8,6 @@ var global =
     : {};
 
 const loadPage = async (path) => {
-  //console.log(`html из: ${path}`);
   showLoadingOverlay();
 
   const response = await fetch(path);
@@ -35,8 +34,6 @@ const loadPageContent = (path) => {
   const url = new URL(path, window.location.href);
   let urlID = Number(url.searchParams.get("id"));
 
-  console.log(urlID);
-
   let obj = global.inputArray.find((e) => e.id === urlID);
   if (!obj) {
     return window.location.replace(
@@ -49,7 +46,9 @@ const loadPageContent = (path) => {
   document.getElementById("main-img").src =
     "/assets/images/heroes/" + obj.image;
 
-  document.body.querySelector("h1").innerHTML = obj.name;
+  let h1El = document.body.querySelector("h1");
+
+  obj.name ? (h1El.innerHTML = obj.name) : (h1El.innerHTML = "name undefined");
 
   if (path.includes("hero")) {
     let pEl = document.body.querySelector("p");
@@ -92,8 +91,9 @@ const hideLoadingOverlay = () => {
   loadEl.style.display = "none";
 };
 
+// Добавление карт (ячеек) с персонажами
 const addCards = (parentID) => {
-  const facList = document.querySelector("ul");
+  const factionList = document.querySelector("ul");
 
   for (const hero of global.inputArray) {
     if (hero.parent === parentID) {
@@ -104,23 +104,25 @@ const addCards = (parentID) => {
       ).length;
 
       elemLi.innerHTML = `
-        <a href="hero.html?id=${hero.id}">
+        <a href="hero.html?id=${hero.id ? hero.id : "4"}">
             <div class="hero-avatar">
-              <img src="/assets/images/heroes/${hero.image}" id="hero-card-img">
+              <img src="/assets/images/heroes/${
+                hero.image
+              }" alt="hero-image" id="hero-card-img">
               <div class="badge">
                 <img src="/assets/images/icons/badge.png">
                 <span>${vassalsCount}</span>
               </div>
             </div>
 
-            <h3>${hero.name}</h3>
+            ${hero.name ? `<h3>${hero.name}</h3>` : "name undefined"}
             ${hero.post ? `<p>${hero.post}</p>` : ""}
         </a>
       `;
 
       if (!vassalsCount) elemLi.querySelector(".badge").style.display = "none";
 
-      facList.appendChild(elemLi);
+      factionList.appendChild(elemLi);
     }
   }
 };
@@ -173,27 +175,15 @@ const initBackRef = (parentID) => {
     let grandParentObj = global.inputArray.find(
       (v) => v.id === parentObj.parent
     );
-    console.log(grandParentObj, parentObj);
+
     grandParentObj
       ? loadPage("/hero.html?id=" + parentID)
       : loadPage("/faction.html?id=" + parentID);
   });
 };
 
-// let loadEl = document.getElementById("loading");
-// console.log(loadEl);
-// document.addEventListener("DOMContentLoaded", () => {
-//   //showLoadingOveray();
-//   loadEl.classList.add("hide");
-//   console.log(loadEl);
-//   setTimeout(() => {
-//     loadEl.remove();
-//   }, 1000);
-// });
-
+// Событие загружающее страницу
 document.addEventListener("DOMContentLoaded", () => {
-  // const loadScripts = () => {
-  // };
   loadPage(window.location.href);
 
   window.addEventListener("popstate", () => {

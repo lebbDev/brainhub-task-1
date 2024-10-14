@@ -184,14 +184,24 @@ header .container a:hover {
     height: 60px;
   }
 
-  .faction .faction-switch img {
+  #main-img {
     width: 168px;
     height: 168px;
   }
 
-  .faction .faction-switch a img {
+  #right-arrow {
     width: 36px;
     height: 36px;
+  }
+
+  #left-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  #hero-card-img {
+    width: 160px;
+    height: 160px;
   }
 }
 
@@ -205,14 +215,13 @@ header .container a:hover {
     height: 36px;
   }
 
-  .faction .faction-switch img {
+  #main-img {
     width: 168px;
     height: 168px;
   }
 
   .faction .faction-switch a img {
-    width: 36px;
-    height: 36px;
+    padding: 6px 8px;
   }
 
   .faction .faction-switch {
@@ -223,12 +232,12 @@ header .container a:hover {
     margin: 24px 0 47px 0;
   }
 
-  .faction img {
+  #gold-line-icon {
     width: 12px;
     height: 57px;
   }
 
-  .hero-avatar img {
+  #hero-card-img {
     width: 120px;
     height: 120px;
   }
