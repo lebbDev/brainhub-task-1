@@ -23,11 +23,15 @@ const loadPage = async (path) => {
   history.pushState({}, "", path);
 
   const parsedPath = new URL(path, window.location.href);
-  if (parsedPath.pathname != "/" && parsedPath.pathname != "/index.html") {
+  if (
+    parsedPath.pathname != "/" &&
+    parsedPath.pathname != "/index.html" &&
+    parsedPath.pathname != ""
+  ) {
     loadPageContent(path);
   } else addListenersForA();
 
-  setTimeout(() => hideLoadingOverlay(), 200);
+  setTimeout(() => hideLoadingOverlay(), 50);
 };
 
 const loadPageContent = (path) => {
@@ -35,10 +39,9 @@ const loadPageContent = (path) => {
   let urlID = Number(url.searchParams.get("id"));
 
   let obj = global.inputArray.find((e) => e.id === urlID);
+
   if (!obj) {
-    return window.location.replace(
-      "https://steamuserimages-a.akamaihd.net/ugc/1645466045539701655/1C2A8F0DB742DDC82FFD7F35346006AE7B3AAA59/?imw=512&amp;&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=false"
-    );
+    return loadPage("/index.html");
   }
 
   let parentID = obj.parent;
@@ -128,12 +131,24 @@ const addCards = (parentID) => {
 };
 
 const addListenersForA = () => {
-  const elements = document.querySelectorAll("a");
+  const elements = document.querySelectorAll("ul > li > a");
+
   for (const element of elements) {
     element.addEventListener("click", async (e) => {
       e.preventDefault();
 
       loadPage(element.href);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  const element = document.getElementById("main-ref");
+
+  if (element) {
+    element.addEventListener("click", async (e) => {
+      e.preventDefault();
+
+      loadPage("/index.html");
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
@@ -145,21 +160,29 @@ const initArrows = (url, obj, parentID) => {
   let indexCurObj = children.indexOf(obj);
 
   if (lenChildren !== 1) {
-    document.getElementById("left-arrow").addEventListener("click", () => {
-      if (indexCurObj - 1 < 0)
-        url.searchParams.set("id", children[lenChildren - 1].id);
-      else url.searchParams.set("id", children[indexCurObj - 1].id);
+    document
+      .getElementById("left-arrow")
+      .addEventListener("click", async (e) => {
+        e.preventDefault();
 
-      loadPage(url.toString());
-    });
+        if (indexCurObj - 1 < 0)
+          url.searchParams.set("id", children[lenChildren - 1].id);
+        else url.searchParams.set("id", children[indexCurObj - 1].id);
 
-    document.getElementById("right-arrow").addEventListener("click", () => {
-      if (indexCurObj + 1 >= lenChildren)
-        url.searchParams.set("id", children[0].id);
-      else url.searchParams.set("id", children[indexCurObj + 1].id);
+        loadPage(url.toString());
+      });
 
-      loadPage(url.toString());
-    });
+    document
+      .getElementById("right-arrow")
+      .addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        if (indexCurObj + 1 >= lenChildren)
+          url.searchParams.set("id", children[0].id);
+        else url.searchParams.set("id", children[indexCurObj + 1].id);
+
+        loadPage(url.toString());
+      });
   } else {
     document.getElementById("left-arrow").style.display = "none";
     document.getElementById("right-arrow").style.display = "none";
