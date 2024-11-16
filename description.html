@@ -3,16 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Faction</title>
+    <title>Description</title>
 
     <link rel="stylesheet" href="/assets/styles/globals.css" />
-    <link rel="stylesheet" href="/assets/styles/faction.css" />
+    <link rel="stylesheet" href="/assets/styles/description.css" />
   </head>
   <body>
     <div id="loading"></div>
     <div id="app">
-      <header>
-        <div class="container">
+      <header class="header">
+        <div class="header__container">
           <a href="" id="back-ref">Back</a>
           <a href="/index.html" id="main-ref">
             <img
@@ -24,17 +24,17 @@
         </div>
       </header>
       <main>
-        <section class="faction">
-          <div class="faction-switch">
-            <a href="" id="left-arrow">
+        <section class="navigation">
+          <div class="navigation__switch">
+            <a href="" class="navigation__arrow" id="left-arrow">
               <img src="/assets/images/icons/arrow.png" alt="arrow-icon" />
             </a>
-            <img src="" alt="main-faction-img" id="main-img" />
-            <a href="" id="right-arrow">
+            <img src="" alt="main-img" id="main-img" />
+            <a href="" class="navigation__arrow" id="right-arrow">
               <img
                 src="/assets/images/icons/arrow.png"
                 alt="arrow-icon"
-                class="reverse"
+                class="navigation__arrow_reverse"
               />
             </a>
           </div>
@@ -45,8 +45,8 @@
             id="gold-line-icon"
           />
         </section>
-        <section class="heroes-list">
-          <ul></ul>
+        <section class="heroes">
+          <ul class="heroes__menu-list"></ul>
         </section>
       </main>
     </div>

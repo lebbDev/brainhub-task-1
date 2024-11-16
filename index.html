@@ -6,50 +6,19 @@
     <title>The Witcher world</title>
 
     <link rel="stylesheet" href="/assets/styles/globals.css" />
-    <link rel="stylesheet" href="/assets/styles/factions-list.css" />
+    <link rel="stylesheet" href="/assets/styles/main-page.css" />
   </head>
   <body>
     <div id="loading"></div>
     <div id="app">
-      <div class="container">
+      <main class="main-container">
         <img
           src="/assets/images/witcher_logo.png"
           alt="witcher-logo"
           id="witcher-logo"
         />
-        <ul class="factions-list">
-          <li>
-            <a href="/faction.html?id=1">
-              <img
-                src="/assets/images/heroes/nilfgaard.jpg"
-                alt="faction-img"
-                id="factions-img"
-              />
-              <h3>Nilfgaard</h3>
-            </a>
-          </li>
-          <li>
-            <a href="/faction.html?id=2">
-              <img
-                src="/assets/images/heroes/redania.jpg"
-                alt="faction-img"
-                id="factions-img" 
-              />
-              <h3>Redania</h3>
-            </a>
-          </li>
-          <li>
-            <a href="/faction.html?id=3">
-              <img 
-                src="/assets/images/heroes/skellige.jpg" 
-                alt="faction-img"
-                id="factions-img" 
-              />
-              <h3>Skellige</h3>
-            </a>
-          </li>
-        </ul>
-      </div>
+        <ul class="main-container__factions-list"></ul>
+      </main>
     </div>
 
     <script src="/assets/scripts/input.js"></script>

@@ -24,17 +24,43 @@ const loadPage = async (path) => {
 
   const parsedPath = new URL(path, window.location.href);
   if (
-    parsedPath.pathname != "/" &&
-    parsedPath.pathname != "/index.html" &&
-    parsedPath.pathname != ""
+    parsedPath.pathname == "/" ||
+    parsedPath.pathname == "/index.html" ||
+    parsedPath.pathname == ""
   ) {
-    loadPageContent(path);
-  } else addListenersForA();
+    loadMainPageContent();
+  } else loadSecondaryPageContent(path);
 
   setTimeout(() => hideLoadingOverlay(), 50);
 };
 
-const loadPageContent = (path) => {
+const loadMainPageContent = () => {
+  const factionsList = document.querySelector("ul");
+
+  for (const faction of global.inputArray) {
+    if (!faction.parent) {
+      const elemLi = document.createElement("li");
+      //elemLi.classList.toggle("heroes__menu-item");
+
+      elemLi.innerHTML = `
+        <a href="description.html?id=${faction.id}">
+              <img
+                src="/assets/images/heroes/${faction.image}"
+                alt="faction-img"
+                class="main-container__faction-img"
+              />
+              <h3>${faction.name}</h3>
+        </a>
+      `;
+
+      factionsList.appendChild(elemLi);
+    }
+  }
+
+  addListenersForA();
+};
+
+const loadSecondaryPageContent = (path) => {
   const url = new URL(path, window.location.href);
   let urlID = Number(url.searchParams.get("id"));
 
@@ -44,31 +70,45 @@ const loadPageContent = (path) => {
     return loadPage("/index.html");
   }
 
+  let h1El = document.body.querySelector("h1");
+  obj.name ? (h1El.innerHTML = obj.name) : (h1El.innerHTML = "name undefined");
+
+  if (obj.parent) {
+    let vassalsCount = global.inputArray.filter(
+      (v) => v.parent === urlID
+    ).length;
+
+    let divEl = document.createElement("div");
+    divEl.classList.toggle("navigation__hero-avatar");
+
+    divEl.innerHTML = `
+              <img src="" alt="main-hero-img" id="main-img" />
+                ${
+                  vassalsCount
+                    ? `<div class="navigation__hero-badge">
+                        <img src="/assets/images/icons/badge.png" alt="badge-icon"/>
+                        <span class="navigation__hero-count">${vassalsCount}</span>
+                      </div>`
+                    : ""
+                }
+    `;
+
+    document.getElementById("main-img").replaceWith(divEl);
+
+    let pEl = document.createElement("p");
+    obj.post ? (pEl.innerHTML = obj.post) : (pEl.innerHTML = "");
+    h1El.after(pEl);
+  }
+
   let parentID = obj.parent;
 
   document.getElementById("main-img").src =
     "/assets/images/heroes/" + obj.image;
 
-  let h1El = document.body.querySelector("h1");
-
-  obj.name ? (h1El.innerHTML = obj.name) : (h1El.innerHTML = "name undefined");
-
-  if (path.includes("hero")) {
-    let pEl = document.body.querySelector("p");
-    obj.post ? (pEl.innerHTML = obj.post) : (pEl.innerHTML = "");
-
-    let vassalsCount = global.inputArray.filter(
-      (v) => v.parent === urlID
-    ).length;
-
-    if (vassalsCount)
-      document.body.querySelector("span").innerHTML = vassalsCount;
-    else document.body.querySelector(".badge-main").style.display = "none";
-  }
-
   addCards(urlID);
-
   addListenersForA();
+
+  initMainRef();
   initArrows(url, obj, parentID);
   initBackRef(parentID);
 };
@@ -96,25 +136,26 @@ const hideLoadingOverlay = () => {
 
 // Добавление карт (ячеек) с персонажами
 const addCards = (parentID) => {
-  const factionList = document.querySelector("ul");
+  const heroesList = document.querySelector("ul");
 
   for (const hero of global.inputArray) {
     if (hero.parent === parentID) {
       const elemLi = document.createElement("li");
+      elemLi.classList.toggle("heroes__menu-item");
 
       let vassalsCount = global.inputArray.filter(
         (el) => el.parent === hero.id
       ).length;
 
       elemLi.innerHTML = `
-        <a href="hero.html?id=${hero.id ? hero.id : "4"}">
-            <div class="hero-avatar">
+        <a href="description.html?id=${hero.id}" class="hero-link">
+            <div class="hero-link__avatar">
               <img src="/assets/images/heroes/${
                 hero.image
-              }" alt="hero-image" id="hero-card-img">
-              <div class="badge">
+              }" alt="hero-image" id="avatar-img">
+              <div class="hero-link__avatar-badge">
                 <img src="/assets/images/icons/badge.png">
-                <span>${vassalsCount}</span>
+                <span class="hero-link__avatar-counter">${vassalsCount}</span>
               </div>
             </div>
 
@@ -123,9 +164,10 @@ const addCards = (parentID) => {
         </a>
       `;
 
-      if (!vassalsCount) elemLi.querySelector(".badge").style.display = "none";
+      if (!vassalsCount)
+        elemLi.querySelector(".hero-link__avatar-badge").style.display = "none";
 
-      factionList.appendChild(elemLi);
+      heroesList.appendChild(elemLi);
     }
   }
 };
@@ -141,7 +183,9 @@ const addListenersForA = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
+};
 
+const initMainRef = () => {
   const element = document.getElementById("main-ref");
 
   if (element) {
@@ -194,14 +238,7 @@ const initBackRef = (parentID) => {
     e.preventDefault();
 
     if (!parentID) return loadPage("/index.html");
-    let parentObj = global.inputArray.find((v) => v.id === parentID);
-    let grandParentObj = global.inputArray.find(
-      (v) => v.id === parentObj.parent
-    );
-
-    grandParentObj
-      ? loadPage("/hero.html?id=" + parentID)
-      : loadPage("/faction.html?id=" + parentID);
+    else return loadPage("/description.html?id=" + parentID);
   });
 };
 

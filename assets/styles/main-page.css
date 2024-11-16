@@ -1,4 +1,4 @@
-.container {
+.main-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +8,7 @@
     margin: 102px 0 120px 0;
 }
 
-.factions-list {
+.main-container__factions-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -16,7 +16,7 @@
     gap: 111px;
 }
 
-.factions-list li a img {
+.main-container__faction-img {
     width: 188px;
     height: 188px;
     padding: 2px;
