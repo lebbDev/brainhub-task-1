@@ -9,8 +9,10 @@ var global =
 
 const loadPage = async (path) => {
   showLoadingOverlay();
-
+  console.log("Оверлей открыт");
+  console.log(document.readyState);
   const response = await fetch(path);
+  if (response) console.log("Ответ пришел");
   const responseText = await response.text();
 
   const parser = new DOMParser();
@@ -28,10 +30,17 @@ const loadPage = async (path) => {
     parsedPath.pathname == "/index.html" ||
     parsedPath.pathname == ""
   ) {
+    console.log("Запуск загрузки контента страницы");
     loadMainPageContent();
-  } else loadSecondaryPageContent(path);
+  } else {
+    console.log("Запуск загрузки контента страницы");
+    loadSecondaryPageContent(path);
+  }
 
-  setTimeout(() => hideLoadingOverlay(), 50);
+  //hideLoadingOverlay();
+  setTimeout(() => hideLoadingOverlay(), 300);
+  console.log(document.readyState);
+  console.log("Оверлей закрыт");
 };
 
 const loadMainPageContent = () => {
@@ -44,12 +53,14 @@ const loadMainPageContent = () => {
 
       elemLi.innerHTML = `
         <a href="description.html?id=${faction.id}">
-              <img
-                src="/assets/images/heroes/${faction.image}"
-                alt="faction-img"
-                class="main-container__faction-img"
-              />
-              <h3>${faction.name}</h3>
+          <div>
+            <img
+              src="/assets/images/heroes/${faction.image}"
+              alt="faction-img"
+              class="main-container__faction-img"
+            />
+            <h3>${faction.name}</h3>
+          </div>
         </a>
       `;
 
@@ -242,11 +253,17 @@ const initBackRef = (parentID) => {
   });
 };
 
+window.addEventListener("onload", () => {
+  console.log("Событие onload");
+});
+
 // Событие загружающее страницу
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOMContentLoaded => загрузка страницы");
   loadPage(window.location.href);
-
+  console.log(document.readyState);
   window.addEventListener("popstate", () => {
+    console.log("popstate => загрузка страницы");
     loadPage(window.location.href);
   });
 });
