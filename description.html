@@ -4,43 +4,43 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Description</title>
-
     <link rel="stylesheet" href="/assets/styles/globals.css" />
     <link rel="stylesheet" href="/assets/styles/description.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="loading"></div>
     <div id="app">
       <header class="header">
-        <div class="header__container">
-          <a href="" id="back-ref">Back</a>
-          <a href="/index.html" id="main-ref">
-            <img
-              src="/assets/images/witcher_logo.png"
-              alt="witcher-logo"
-              id="witcher-logo"
-            />
-          </a>
-        </div>
+        <a href="" id="back-ref">Back</a>
+        <a href="/index.html" id="main-ref">
+          <img
+            src="/assets/images/witcher_logo.png"
+            alt="witcher-logo"
+            id="witcher-logo"
+          />
+        </a>
       </header>
       <main>
         <section class="navigation">
           <div class="navigation__switch">
             <a href="" class="navigation__arrow" id="left-arrow">
-              <img src="/assets/images/icons/arrow.png" alt="arrow-icon" />
+              <img src="/assets/images/icons/arrow.png" alt="arrow-icon" class="navigation__arrow-img"/>
             </a>
-            <img src="" alt="main-img" id="main-img" />
+            <img src="" alt="main-img" class="navigation__faction-img" id="main-img" />
             <a href="" class="navigation__arrow" id="right-arrow">
               <img
                 src="/assets/images/icons/arrow.png"
                 alt="arrow-icon"
-                class="navigation__arrow_reverse"
+                class="navigation__arrow_reverse navigation__arrow-img"
               />
             </a>
           </div>
-          <h1></h1>
+          <h1 class="navigation__h1"></h1>
           <img
-            src="/assets/images/icons/gold_line.png"
+            src="/assets/images/icons/line.svg"
             alt="gold-line-icon"
             id="gold-line-icon"
           />

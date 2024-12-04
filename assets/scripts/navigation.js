@@ -9,10 +9,8 @@ var global =
 
 const loadPage = async (path) => {
   showLoadingOverlay();
-  console.log("Оверлей открыт");
-  console.log(document.readyState);
+  
   const response = await fetch(path);
-  if (response) console.log("Ответ пришел");
   const responseText = await response.text();
 
   const parser = new DOMParser();
@@ -30,17 +28,10 @@ const loadPage = async (path) => {
     parsedPath.pathname == "/index.html" ||
     parsedPath.pathname == ""
   ) {
-    console.log("Запуск загрузки контента страницы");
     loadMainPageContent();
-  } else {
-    console.log("Запуск загрузки контента страницы");
-    loadSecondaryPageContent(path);
-  }
+  } else loadSecondaryPageContent(path);
 
-  //hideLoadingOverlay();
-  setTimeout(() => hideLoadingOverlay(), 300);
-  console.log(document.readyState);
-  console.log("Оверлей закрыт");
+  setTimeout(() => hideLoadingOverlay(), 200);
 };
 
 const loadMainPageContent = () => {
@@ -49,7 +40,7 @@ const loadMainPageContent = () => {
   for (const faction of global.inputArray) {
     if (!faction.parent) {
       const elemLi = document.createElement("li");
-      //elemLi.classList.toggle("heroes__menu-item");
+      elemLi.classList.toggle("main-container__factions-item");
 
       elemLi.innerHTML = `
         <a href="description.html?id=${faction.id}">
@@ -57,9 +48,8 @@ const loadMainPageContent = () => {
             <img
               src="/assets/images/heroes/${faction.image}"
               alt="faction-img"
-              class="main-container__faction-img"
-            />
-            <h3>${faction.name}</h3>
+              class="main-container__faction-img"/>
+            <h3 class="main-container__faction-h3">${faction.name}</h3>
           </div>
         </a>
       `;
@@ -93,7 +83,9 @@ const loadSecondaryPageContent = (path) => {
     divEl.classList.toggle("navigation__hero-avatar");
 
     divEl.innerHTML = `
-              <img src="" alt="main-hero-img" id="main-img" />
+            <div class="navigation__hero-img-block">
+              <img src="" alt="main-hero-img" class="navigation__hero-img" id="main-img" />
+            </div>
                 ${
                   vassalsCount
                     ? `<div class="navigation__hero-badge">
@@ -107,6 +99,7 @@ const loadSecondaryPageContent = (path) => {
     document.getElementById("main-img").replaceWith(divEl);
 
     let pEl = document.createElement("p");
+    pEl.classList.toggle("navigation__p");
     obj.post ? (pEl.innerHTML = obj.post) : (pEl.innerHTML = "");
     h1El.after(pEl);
   }
@@ -129,10 +122,10 @@ const showLoadingOverlay = () => {
 
   loadEl.style.top = "0";
   loadEl.style.left = "0";
+  loadEl.style.right = "0";
   loadEl.style.display = "flex";
   loadEl.style.position = "fixed";
   loadEl.style.height = "100vh";
-  loadEl.style.width = "100vw";
   loadEl.style.backgroundImage = "url(/assets/images/background.png)";
   loadEl.style.backgroundSize = "cover";
   loadEl.style.transition = "0.2s";
@@ -165,13 +158,13 @@ const addCards = (parentID) => {
                 hero.image
               }" alt="hero-image" id="avatar-img">
               <div class="hero-link__avatar-badge">
-                <img src="/assets/images/icons/badge.png">
+                <img src="/assets/images/icons/badge.png" class="hero-link__avatar-badge-img">
                 <span class="hero-link__avatar-counter">${vassalsCount}</span>
               </div>
             </div>
 
-            ${hero.name ? `<h3>${hero.name}</h3>` : "name undefined"}
-            ${hero.post ? `<p>${hero.post}</p>` : ""}
+            ${hero.name ? `<h3 class="hero-link__h3">${hero.name}</h3>` : `<h3 class="hero-link__h3">name is unknown</h3>`}
+            ${hero.post ? `<p class="hero-link__p">${hero.post}</p>` : `<p class="hero-link__p">post is unknown</p>`}
         </a>
       `;
 
@@ -253,17 +246,11 @@ const initBackRef = (parentID) => {
   });
 };
 
-window.addEventListener("onload", () => {
-  console.log("Событие onload");
-});
-
 // Событие загружающее страницу
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOMContentLoaded => загрузка страницы");
   loadPage(window.location.href);
-  console.log(document.readyState);
+  
   window.addEventListener("popstate", () => {
-    console.log("popstate => загрузка страницы");
     loadPage(window.location.href);
   });
 });

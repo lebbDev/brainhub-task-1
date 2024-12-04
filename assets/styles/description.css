@@ -1,19 +1,29 @@
-html {
-  padding-bottom: 40px;
+#app {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 67px 50px 100px 50px;
+  position: relative;
 }
 
 .header {
-  top: 0;
-  left: 0;
-  width: 100%;
   position: absolute;
+  left: 0;
+  right: 0;
+  height: 100px;
 }
 
-.header__container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 65px 119px 0 130px;
+#back-ref {
+  position: absolute;
+  left: 0;
+  margin: 22px 0 0 131px;
+}
+
+#main-ref {
+  position: absolute;
+  right: 0;
+  margin: 0 119px 0 0;
+  width: 88px;
+  height: 79px;
 }
 
 #witcher-logo {
@@ -21,7 +31,7 @@ html {
   height: 79px;
 }
 
-.header__container a:hover {
+.header a:hover {
   text-decoration: underline;
   text-decoration-color: #ffd28d;
   text-underline-offset: 7px;
@@ -33,48 +43,60 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 65px;
+  text-align: center;
+  text-wrap: wrap;
+  margin: 0 0 76px 0;
 }
 
 .navigation__switch {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 60px;
+  gap: 61px;
 }
 
-/* Может убрать img? */
-.navigation__arrow img {
-  padding: 12px 16px;
+.navigation__arrow {
+  height: 46px;
+  width: 46px;
+}
+
+.navigation__arrow-img {
+  height: 22px;
+  width: 13px;
+  padding: 11.3px 15.8px;
   border-radius: 100%;
   border: rgba(255, 255, 255, 0.3) 1px solid;
 }
 
-.navigation__arrow img:hover {
+.navigation__arrow-img:hover {
   border: #ffd28d 1px solid;
-}
-
-.navigation h1 {
-  margin: 11px 0 66px 0;
 }
 
 .navigation__arrow_reverse {
   transform: rotateY(180deg);
 }
 
-#main-img {
-  width: 359px;
-  height: 359px;
-  padding: 2px;
-  border-radius: 100%;
-  background-image: linear-gradient(180deg, #ffd28d 47.92%, #352000 100%);
+.navigation__h1 {
+  margin: 13px 0 0 0;
+  height: 78px;
+}
+
+.navigation__p {
+  margin: 24px 0 0 0;
+  letter-spacing: 0.04em;
+}
+
+#gold-line-icon {
+  margin-top: 63px;
+  height: 130px;
+  width: 16px;
 }
 
 .heroes {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 76px;
+  flex-wrap: wrap;
 }
 
 .heroes__menu-list {
@@ -92,23 +114,31 @@ html {
 }
 
 .hero-link {
+  width: 280px;
+  height: 352px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
+  text-align: center;
 }
 
-.hero-link h3 {
-  margin-bottom: 0;
+.hero-link__h3 {
+  height: 35px;
+  margin: 30px 0 0 0;
+  line-height: 110%;
 }
 
-.hero-link p {
-  margin-top: 5px;
+.hero-link__p {
+  height: 25px;
+  margin: 10px 0 0 0;
+  letter-spacing: 0.04em;
+  line-height: 149%;
 }
 
 #avatar-img {
-  width: 188px;
-  height: 188px;
+  width: 162px;
+  height: 162px;
   padding: 2px;
   border-radius: 100%;
   background-image: linear-gradient(180deg, #ffd28d 47.92%, #352000 100%);
@@ -116,12 +146,18 @@ html {
 
 .hero-link__avatar {
   position: relative;
+  margin: 39px 0 9px 0;
 }
 
 .hero-link__avatar-badge {
   position: absolute;
-  left: -7px;
+  left: -11px;
   bottom: -20px;
+}
+
+.hero-link__avatar-badge-img {
+  height: 73px;
+  width: 68px;
 }
 
 .hero-link__avatar-counter {
@@ -129,166 +165,371 @@ html {
   text-align: center;
   width: 100%;
   left: 0;
-  bottom: 25px;
+  bottom: 27px;
 }
 
-/* Для версии с героем */
+/* Для версии с описанием героя */
 .navigation__hero-avatar {
   position: relative;
+  width: 359px;
+  height: 359px;
+}
+
+.navigation__faction-img {
+  width: 355px;
+  height: 355px;
+  border-radius: 100%;
+  background-image: linear-gradient(180deg, #ffd28d 47.92%, #352000 100%);
+  padding: 2px;
+}
+
+.navigation__hero-img-block {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 356px;
+  height: 356px;
+  border-radius: 100%;
+  border: 2px solid #dbae64;
+}
+
+.navigation__hero-img {
+  width: auto;
+  height: auto;
+  transform: scale(0.85);
 }
 
 .navigation__hero-badge {
   position: absolute;
-  left: 5px;
-  bottom: 30px;
+  left: 19px;
+  bottom: 14px;
 }
 
 .navigation__hero-count {
   position: absolute;
   text-align: center;
   width: 100%;
-  left: 0px;
-  bottom: 20px;
-}
-
-
-/*
-@media (max-width: 1440px) {
-  header .container {
-    padding: 65px 119px 0 130px;
-  }
-
-  header img {
-    width: 88px;
-    height: 79px;
-  }
-
-  .heroes-list ul {
-    gap: 20px;
-  }
-
-  .heroes-list ul li {
-    width: 280px;
-    height: 352px;
-  }
+  left: 0;
+  bottom: 23px;
 }
 
 @media (max-width: 1024px) {
-  header .container {
-    padding: 67px 66px 0 66px;
+  #app {
+    padding: 67px 50px 100px 50px;
   }
 
-  .heroes-list ul {
+  #back-ref {
+    margin: 23px 0 0 67px;
+  }
+
+  #main-ref {
+    margin: 0 66px 0 0;
+  }
+
+  .navigation__h1 {
+    margin: 14px 0 0 0;
+  }
+
+  .navigation__p {
+    margin: 23px 0 0 0;
+  }
+
+  #gold-line-icon {
+    margin-top: 63px;
+  }
+
+  .heroes__menu-list {
     gap: 24px;
+    row-gap: 20px;
   }
 
-  .heroes-list ul li {
+  .heroes__menu-item {
     width: 208px;
     height: 352px;
+  }
+
+  .hero-link {
+    width: 208px;
+    height: 352px;
+  }
+
+  .hero-link__avatar {
+    margin: 37px 0 9px 0;
+  }
+
+  .hero-link__h3 {
+    height: auto;
+    margin: 31px 0 0 0;
+  }
+
+  .hero-link__avatar-badge {
+    bottom: -22px;
+  }
+
+  .hero-link__avatar-counter {
+    bottom: 28px;
   }
 }
 
 @media (max-width: 768px) {
-  header .container {
-    padding: 67px 46px 0 46px;
+  #app {
+    padding: 67px 30px 100px 30px;
   }
 
-  .heroes-list ul {
-    gap: 20px;
+  #back-ref {
+    margin: 21px 0 0 47px;
+  }
+
+  #main-ref {
+    margin: 0 46px 0 0;
+  }
+
+  .navigation__p {
+    margin: 20px 0 0 0;
+  }
+
+  .heroes__menu-list {
+    gap: 24px;
+    row-gap: 21px;
+  }
+
+  .hero-link__avatar-badge {
+    bottom: -20px;
+    left: -11px;
+  }
+
+  .hero-link__avatar-counter {
+    bottom: 26px;
+  }
+
+  .hero-link__h3 {
+    margin: 31px 0 0 0;
   }
 }
 
 @media (max-width: 700px) {
-  header .container {
-    padding: 40px 46px 0 46px;
-  }
-
-  header img {
+  #witcher-logo {
     width: 66px;
     height: 60px;
   }
 
-  #main-img {
-    width: 168px;
-    height: 168px;
+  #back-ref {
+    margin: 20px 0 0 25px;
   }
 
-  #right-arrow {
-    width: 36px;
+  #main-ref {
+    margin: 0 10px 0 0;
+  }
+
+  .navigation__hero-avatar {
+    width: 256px;
+    height: 256px;
+  }
+
+  .navigation__hero-img-block {
+    width: 256px;
+    height: 256px;
+  }
+
+  .navigation__hero-img {
+    transform: scale(0.6);
+  }
+
+  .navigation__faction-img {
+    width: 256px;
+    height: 256px;
+  }
+
+  .navigation__arrow {
     height: 36px;
-  }
-
-  #left-arrow {
     width: 36px;
-    height: 36px;
   }
 
-  #hero-card-img {
-    width: 160px;
-    height: 160px;
+  .navigation__arrow-img {
+    height: 17px;
+    width: 10px;
+    padding: 9px 12px;
+  }
+
+  .navigation__switch {
+    gap: 30px;
+  }
+
+  .navigation__hero-badge {
+    bottom: 0;
+  }
+
+  .navigation__h1 {
+    height: auto;
+  }
+}
+
+@media (max-width: 400px) {
+  #back-ref {
+    margin: 20px 0 0 0px;
+  }
+
+  #main-ref {
+    margin: 0 0px 0 0;
+  }
+
+  .navigation__switch {
+    gap: 5px;
   }
 }
 
 @media (max-width: 320px) {
-  header .container {
-    padding: 29px 29px 0 29px;
+  #app {
+    padding: 0 20px 50px 20px;
   }
 
-  header img {
+  #back-ref {
+    margin: 37px 0 0 31px;
+  }
+
+  #main-ref {
+    margin: 30px 30px 0 0;
     width: 40px;
     height: 36px;
   }
 
-  #main-img {
+  #witcher-logo {
+    width: 40px;
+    height: 36px;
+  }
+
+  .navigation__hero-avatar {
     width: 168px;
     height: 168px;
   }
 
-  .faction .faction-switch a img {
-    padding: 6px 8px;
+  .navigation__hero-img-block {
+    width: 168px;
+    height: 168px;
   }
 
-  .faction .faction-switch {
+  .navigation__faction-img {
+    width: 164px;
+    height: 164px;
+  }
+
+  .navigation__switch {
     gap: 11px;
   }
 
-  .faction h1 {
-    margin: 24px 0 47px 0;
+  .navigation__arrow {
+    height: 36px;
+    width: 36px;
+  }
+
+  .navigation__arrow-img {
+    height: 17px;
+    width: 10px;
+    padding: 9px 12px;
+  }
+
+  .navigation__h1 {
+    line-height: 120%;
+    margin: 26px 0 0 0;
+  }
+
+  .navigation__p {
+    margin: 14px 0 0 0;
+    font-size: 17px;
   }
 
   #gold-line-icon {
-    width: 12px;
+    margin-top: 45px;
     height: 57px;
+    width: 15px;
   }
 
-  #hero-card-img {
-    width: 120px;
-    height: 120px;
+  .heroes {
+    height: auto;
   }
 
-  .hero-avatar .badge img {
-    width: 30px;
-    height: 32px;
+  .heroes__menu-list {
+    gap: 21px;
+    row-gap: 13px;
   }
 
-  .heroes-list ul li {
+  #avatar-img {
+    width: 116px;
+    height: 116px;
+  }
+
+  .heroes__menu-item {
     width: 120px;
     height: 224px;
   }
 
-  .heroes-list ul a h3 {
-    margin-top: 5px;
+  .hero-link {
+    width: 120px;
+    height: 224px;
   }
 
-  .badge {
-    left: 0;
-    bottom: 0;
+  .navigation {
+    margin: 0 0 35px 0;
+    padding-top: 86px;
   }
 
-  .badge span {
-    width: 100%;
+  .hero-link__avatar {
+    height: 114px;
+    margin: 8px 0 0 0;
+  }
+
+  .hero-link__avatar-badge {
+    left: 1px;
+    bottom: -10px;
+  }
+
+  .hero-link__avatar-badge-img {
+    width: 30px;
+    height: 33px;
+  }
+
+  .hero-link__avatar-counter {
+    bottom: 13px;
+  }
+
+  .hero-link__h3 {
+    height: auto;
+    margin: 21px 0 0 0;
+  }
+
+  .hero-link__p {
+    margin: 6px 0 0 0;
+  }
+
+  .navigation__hero-avatar {
+    width: 168px;
+    height: 168px;
+  }
+
+  .navigation__hero-img-block {
+    width: 165px;
+    height: 165px;
+  }
+
+  .navigation__hero-img {
+    transform: scale(0.4);
+  }
+
+  .navigation__hero-badge {
+    width: 30px;
+    height: 33px;
+    left: 6px;
+    bottom: 7px;
+  }
+
+  .navigation__hero-badge img {
+    width: 30px;
+    height: 33px;
+  }
+
+  .navigation__hero-count {
     left: 0;
-    bottom: 12px;
+    bottom: 9px;
   }
 }
-*/

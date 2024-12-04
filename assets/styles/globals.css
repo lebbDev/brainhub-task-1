@@ -1,6 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&display=swap");
-
-/* Reset styles */
+/* Сброс стилей  */
 html,
 body {
   margin: 0;
@@ -19,7 +17,7 @@ a {
   text-decoration: none;
 }
 
-/* Other styles */
+/* Другие глобальные стили */
 :root {
   --color-black: #0c0c0c;
   --color-gold: #dbae64;
@@ -32,6 +30,7 @@ html {
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
+  background-color: #0c0c0c;
 }
 
 h1,
@@ -50,6 +49,12 @@ a {
 
 span {
   font-weight: 700;
+}
+
+@media (max-width: 320px) {
+  html {
+    background-size: contain;
+  }
 }
 
 @media (min-width: 321px) {
@@ -104,7 +109,7 @@ span {
   }
 
   a {
-    font-size: 12px;
+    font-size: 17px;
   }
 
   p {
